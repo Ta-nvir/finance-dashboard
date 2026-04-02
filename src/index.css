@@ -166,12 +166,37 @@ input:focus, select:focus, textarea:focus {
 /* Responsive */
 @media (max-width: 1024px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  :root { --sidebar-w: 0px; }
-  .main-area { margin-left: 0; }
-  .content-area { padding: 16px; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-  .sidebar { transform: translateX(-100%); }
+  .main-area { margin-left: 0 !important; }
+  .content-area { padding: 12px !important; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay { display: block !important; }
+
+  table { font-size: 12px !important; }
+  table th, table td { padding: 10px 8px !important; }
+  .hide-mobile { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .content-area { padding: 8px !important; }
+  h1 { font-size: 15px !important; }
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 150;
+  backdrop-filter: blur(2px);
 }
